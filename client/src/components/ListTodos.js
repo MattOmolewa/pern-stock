@@ -5,7 +5,7 @@ function ListTodos() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/todos");
+      const response = await fetch("/todos");
       const data = await response.json();
       setTodos(data);
       //   console.log(todos);
@@ -14,12 +14,12 @@ function ListTodos() {
     }
   };
 
-  const deleteData = async (id) => {
-    await fetch(`http://localhost:5000/todos/${id}`, {
+  const deleteData = async id => {
+    await fetch(`/todos/${id}`, {
       method: "DELETE",
     });
     setTodos(
-      todos.filter((todo) => {
+      todos.filter(todo => {
         return todo.todo_id !== id;
       })
     );
@@ -33,7 +33,7 @@ function ListTodos() {
   return (
     <div>
       <ul className="list-group mt-5">
-        {todos.map((todo) => (
+        {todos.map(todo => (
           <li key={todo.todo_id} className="list-group-item ">
             <span>{todo.description}</span>
             <div className="float-right">
@@ -55,8 +55,8 @@ function ListTodos() {
 function EditTodo({ todo }) {
   const [description, setDescription] = useState(todo.description);
 
-  const EditText = async (id) => {
-    await fetch(`http://localhost:5000/todos/${id}`, {
+  const EditText = async id => {
+    await fetch(`/todos/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json; charset=UTF-8", // Indicates the content
@@ -106,7 +106,7 @@ function EditTodo({ todo }) {
                 <input
                   type="text"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={e => setDescription(e.target.value)}
                   className="form-control"
                 />
               </form>

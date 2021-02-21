@@ -11,6 +11,7 @@ app.use(express.json()); // allows us to access req.body
 // app.use(express.static(path.join(__dirname, "client/build")));
 
 if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
 }
 
 //routes
@@ -82,6 +83,10 @@ app.delete("/todos/:id", async (req, res) => {
   } catch (error) {
     console.error(error.message);
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 app.listen(PORT, () => {

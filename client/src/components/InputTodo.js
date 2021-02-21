@@ -4,14 +4,14 @@ function InputTodo() {
   const [description, setDescription] = useState("");
   // console.log(description);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setDescription(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:5000/todos", {
+      await fetch("/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ description }),
