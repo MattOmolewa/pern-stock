@@ -17,7 +17,7 @@ function InputTodo() {
         body: JSON.stringify({ description }),
       });
       setDescription("");
-      // window.location.reload();
+      window.location.reload();
       // console.log(response);
     } catch (error) {
       console.error(error.message);

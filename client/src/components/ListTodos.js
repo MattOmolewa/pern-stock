@@ -64,7 +64,7 @@ function EditTodo({ todo }) {
       body: JSON.stringify({ description }),
     });
     console.log(description);
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
